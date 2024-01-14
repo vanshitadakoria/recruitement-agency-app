@@ -1,0 +1,52 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 21-Nov-2023, 5:40:43 PM
+    Author     : vanshita
+*/
+.dataTables_filter {
+    margin-bottom: 15px; /* Adjust the margin as needed */
+}
+
+.dataTables_filter label {
+    display: block;
+    color: #333; /* Text color */
+    font-weight: bold;
+}
+.dataTables_filter input {
+    width: 20%; /* Make the input full width */
+    padding: 4px; /* Adjust padding as needed */
+    box-sizing: border-box;
+    border: 1px solid #ccc; /* Border color */
+    border-radius: 4px; /* Border radius */
+    margin: 2px;
+}
+.dataTables_info,
+.dataTables_paginate {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px; /* Adjust the margin as needed */
+    color: #555;
+}
+.dataTables_paginate a {
+    padding: 6px 10px; /* Adjust padding as needed */
+    margin: 0 2px; /* Adjust margin as needed */
+    border: 1px solid #ccc; /* Border color */
+    border-radius: 4px; /* Border radius */
+    text-decoration: none;
+    color: #333; /* Text color */
+    cursor: pointer;
+}
+
+.dataTables_paginate a:hover {
+    background-color: #007bff; /* Background color on hover */
+    color: #fff; /* Text color on hover */
+}
+
+.dataTables_paginate .active a {
+    background-color: #007bff; /* Active page background color */
+    color: #fff; /* Active page text color */
+}

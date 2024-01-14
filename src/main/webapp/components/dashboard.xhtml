@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<!-- /webapp/components/dashboard.xhtml -->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:composite="http://xmlns.jcp.org/jsf/composite">
+
+    <composite:interface>
+        <!-- Define any attributes if needed -->
+    </composite:interface>
+
+    <composite:implementation>
+        <h:outputStylesheet name="css/output.css" />
+
+            <div class="flex h-screen bg-gray-200">
+                <!-- Sidebar -->
+                <div class="w-64 bg-gray-800">
+                    <div class="flex items-center justify-center mt-8">
+                        <h1 class="text-white text-2xl">Your Logo</h1>
+                    </div>
+
+                    <nav class="mt-10">
+                        <a href="#dashboard" class="flex items-center px-6 py-2 text-gray-200 border-l-4 border-blue-500">
+                            <span class="text-lg font-semibold">Dashboard</span>
+                        </a>
+                        <a href="#jobs" class="flex items-center px-6 py-2 mt-2 text-gray-200 hover:border-blue-500">
+                            <span class="text-lg">Jobs</span>
+                        </a>
+                        <a href="#skills" class="flex items-center px-6 py-2 mt-2 text-gray-200 hover:border-blue-500">
+                            <span class="text-lg">Skills</span>
+                        </a>
+                        <a href="#transactions" class="flex items-center px-6 py-2 mt-2 text-gray-200 hover:border-blue-500">
+                            <span class="text-lg">Transactions</span>
+                        </a>
+                    </nav>
+                </div>
+
+                <!-- Content -->
+                <div class="flex-1 flex flex-col overflow-hidden">
+                    <!-- Your content goes here -->
+                    <div class="p-6">
+                        <!-- Content for the selected tab -->
+                        <h2 class="text-2xl font-semibold mb-4">Dashboard Content</h2>
+                        <!-- Add content for other tabs similarly -->
+                    </div>
+                </div>
+            </div>
+    </composite:implementation>
+</html>

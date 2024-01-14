@@ -1,0 +1,451 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+        <title>Admin - Job Postings</title>
+        <h:outputStylesheet name="css/output.css" />
+        <h:outputStylesheet name="js/datatables.min.css"/>
+        <h:outputScript name="js/jquery.min.js"/>
+        <h:outputScript name="js/datatables.min.js"/>
+
+    </h:head>
+
+    <h:body class="font-sans bg-gray-100">
+        <div class="flex h-screen bg-gray-200">
+            <!-- Sidebar -->
+            <div class="w-64 bg-gray-800">
+                <div class="flex items-center justify-center mt-4">
+                    <img src="../logo/logonobg.jpg" alt="Recruitment Agency" class="w-5/6 rounded-lg h-16 bg-gray-200 border border-gray-800"></img>
+
+                </div>
+
+                <nav class="mt-10">
+                    <h:link outcome="dashboard.jsf" class="flex items-center px-6 py-2 text-gray-200 hover:border-blue-500 ">
+                        <svg class="w-6 h-6 mr-4 text-white dark:text-white" aria-hidden="true" width="20" height="20" fill="none" viewBox="0 0 20 20">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8v10a1 1 0 0 0 1 1h4v-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v5h4a1 1 0 0 0 1-1V8M1 10l9-9 9 9"/>
+                        </svg>
+                        <!-- Assuming your JSF file is in the root folder -->
+                        <span class="text-xl">Dashboard</span>
+                    </h:link>
+                    <h:link outcome="users.jsf" class="flex items-center px-6 py-2 mt-2 text-gray-200 hover:border-blue-500">
+                        <svg class="w-6 h-6 mr-4 text-white dark:text-white" aria-hidden="true" fill="none" width="20" height="20" viewBox="0 0 20 20">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M14 3a3 3 0 1 1-1.614 5.53M15 12a4 4 0 0 1 4 4v1h-3.348M10 4.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0ZM5 11h3a4 4 0 0 1 4 4v2H1v-2a4 4 0 0 1 4-4Z"/>
+                        </svg>
+                        <span class="text-xl">Users</span>
+                    </h:link>
+                    <h:link outcome="jobs.jsf" class="flex items-center px-6 py-2 mt-2 text-gray-200 border-l-4 border-blue-500 ">
+                        <svg class="w-6 h-6 mr-4 text-white dark:text-white" aria-hidden="true" width="20" height="20" fill="none" viewBox="0 0 20 20">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M1 10c1.5 1.5 5.25 3 9 3s7.5-1.5 9-3m-9-1h.01M2 19h16a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1ZM14 5V3a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v2h8Z"/>
+                        </svg>
+                        <span class="text-xl font-semibold">Jobs</span>
+                    </h:link>
+                    <h:link outcome="skills.jsf" class="flex items-center px-6 py-2 mt-2 text-gray-200 hover:border-blue-500">
+                        <svg class="w-6 h-6 mr-4 text-white dark:text-white" aria-hidden="true" fill="none" width="20" height="20" viewBox="0 0 20 20">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 5h8m-1-3a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1m6 0v3H6V2m6 0h4a1 1 0 0 1 1 1v15a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1h4m0 9.464 2.025 1.965L12 9.571"/>
+                        </svg>
+                        <span class="text-xl">Skills</span>
+                    </h:link>
+                    <h:link outcome="candidates.jsf" class="flex items-center px-6 py-2 mt-2 text-gray-200 hover:border-blue-500">
+                        <svg class="w-6 h-6 mr-4 text-white dark:text-white" aria-hidden="true" width="20" height="20" fill="none" viewBox="0 0 20 20">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 4H1m3 4H1m3 4H1m3 4H1m6.071.286a3.429 3.429 0 1 1 6.858 0M4 1h12a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1Zm9 6.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Z"/>
+                        </svg>
+                        <span class="text-xl">Candidates</span>
+                    </h:link>
+                    <h:link outcome="plan_transactions.jsf" class="flex items-center px-6 py-2 mt-2 text-gray-200 hover:border-blue-500">
+                        <svg class="w-6 h-6 mr-4 text-white dark:text-white" aria-hidden="true" width="20" height="20" fill="none" viewBox="0 0 16 20">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M1 17V2a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a2 2 0 0 0-2 2Zm0 0a2 2 0 0 0 2 2h12M5 15V1m8 18v-4"/>
+                        </svg>
+                        <span class="text-xl">Transactions</span>
+                    </h:link>
+                </nav>
+
+            </div>
+
+            <!-- Content -->
+            <div class="flex-1 flex flex-col w-4/5">
+                <!-- Your content goes here -->
+                <div class="p-6 overflow-y-auto ">
+                    <div class="flex justify-between mb-4">
+                        <h2 class="text-3xl font-semibold mb-4">Job Postings</h2>
+                        <h:form>
+                            <h:commandButton action="#{loginMB.logout()}" id="logout" value="Sign Out" class="text-md text-white bg-red-600 py-2 px-2 rounded hover:bg-red-800" />
+
+                        </h:form>
+                    </div>
+                    <div class="container mx-auto mt-4 bg-white rounded-lg shadow-lg p-6">
+
+                        <h2 class="text-2xl font-semibold mb-4">Details</h2>
+
+                        <h:outputText value="#{jobsMB.message}"/>
+                        
+                        <h:form id="addjob" class="grid grid-cols-2 gap-4" rendered="#{empty jobsMB.existJob}">
+                            <!-- Job Title -->
+                            <div class="mb-4 w-full col-span-2">
+                                <label for="jobTitle" class="block text-gray-700">Job Title:</label>
+                                <!--<h:inputText id="jobTitle" value="#{jobsMB.j.title}" class="form-input" required="true" />-->
+                                <h:inputText id="jobTitle" value="#{jobsMB.j.title}" requiredMessage="Job Title is Required" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:leading-6" required="true"/>
+                                <h:message for="jobTitle" class="text-red-500"/>
+
+                            </div>
+
+                            <!-- Description -->
+                            <div class="mb-4 w-full col-span-2">
+                                <label for="description" class="block text-gray-700">Description:</label>
+                                <h:inputTextarea id="description" value="#{jobsMB.j.description}"  requiredMessage="Description is required" rows="5" cols="30" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:leading-6" required="true" />
+                                <h:message for="description" class="text-red-500"/>
+
+                            </div>
+
+                            <!-- Experience -->
+                            <div class="mb-4 w-full col-span-2">
+                                <label for="experience" class="block text-gray-700">Experience (years):</label>
+                                <h:inputText id="experience" value="#{jobsMB.j.experience}" requiredMessage="Experience is required" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:leading-6" required="true" />
+                                <h:message for="experience" class="text-red-500"/>
+
+                            </div>
+
+
+
+                            <!-- Min. Salary -->
+                            <div class="mb-4 w-full">
+                                <label for="min_salary" class="block text-gray-700">Min. Salary:</label>
+                                <h:inputText id="min_salary" value="#{jobsMB.j.minSalary}" requiredMessage="Minimum Salary is required" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:leading-6" required="true" />
+                                <h:message for="min_salary" class="text-red-500"/>
+
+                            </div>
+
+                            <!-- Max. Salary -->
+                            <div class="mb-4 w-full">
+                                <label for="max_salary" class="block text-gray-700">Max. Salary:</label>
+                                <h:inputText id="max_salary" value="#{jobsMB.j.maxSalary}" requiredMessage="Maximum Salary is required" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:leading-6" required="true" />
+                                <h:message for="max_salary" class="text-red-500"/>
+
+                            </div>
+
+
+                            <!-- Deadline Remaining -->
+                            <!-- Skills -->
+                            <div class="mb-4 w-full c">
+                                <label for="skills" class="block text-gray-700">Skills:</label>
+
+                                <div class="overflow-y-auto rounded-md h-14 ring-1 ring-inset ring-gray-300">
+                                    <h:selectManyCheckbox id="skills" layout="pageDirection" value="#{jobsMB.selectedSkills}" class="block w-full rounded-md border-0 pl-4 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:leading-6" required="true">
+
+                                    <f:selectItems value="#{skillsMB.allSkills}" var="skill" itemValue="#{skill.id}" itemLabel="#{skill.name}"/>
+                                </h:selectManyCheckbox>
+                                <h:message for="skills" class="text-red-500"/>
+                                </div>
+
+
+                            </div>
+
+                            <!-- Job Type -->
+                            <div class="mb-4 w-full">
+                                <label for="jobType" class="block text-gray-700">Job Type:</label>
+                                <h:selectOneMenu id="jobType" value="#{jobsMB.j.jobType}" requiredMessage="Please Select Job Type" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:leading-6" required="true">
+                                    <f:selectItem itemValue="" itemLabel="----- Select Job Type -----" />
+                                    <f:selectItem itemValue="fulltime" itemLabel="Full-time" />
+                                    <f:selectItem itemValue="partime" itemLabel="Part-time" />
+                                    <f:selectItem itemValue="contract" itemLabel="Contract" />
+                                    <f:selectItem itemValue="wfh" itemLabel="Work From Home" />
+                                </h:selectOneMenu>
+                                <h:message for="jobType" class="text-red-500"/>
+
+                            </div>
+
+                            <!-- State -->
+                            <div class="mb-4 w-full">
+                                <label for="state" class="block text-gray-700">State:</label>
+                                <h:selectOneMenu id="state" value="#{jobsMB.selectedState}" requiredMessage="Please Select State"  class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:leading-6" required="true" >
+                                    <f:selectItem itemValue="0" itemLabel="----- Select State -----" />
+
+                                    <f:selectItems value="#{statesMB.states}" var="state" itemValue="#{state.id}" itemLabel="#{state.name}"/> 
+
+
+                                    <f:ajax event="click" execute="state" render="city" listener="#{jobsMB.updateCities()}"/>
+
+
+                                </h:selectOneMenu>
+                                <h:message for="state" class="text-red-500"/>
+                            </div>
+
+                            <!-- City -->
+                            <div class="mb-4 w-full">
+                                <label for="city" class="block text-gray-700">City:</label>
+                                <h:selectOneMenu id="city" value="#{jobsMB.selectedCity}" requiredMessage="Please Select City" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:leading-6" required="true">
+                                    <f:selectItem itemValue="0" itemLabel="----- Select City -----" />
+
+                                    <f:selectItems rendered="#{not empty jobsMB.cities}" value="#{jobsMB.cities}" var="city" itemValue="#{city.id}" itemLabel="#{city.name}" />
+                                </h:selectOneMenu>
+                                <h:message for="city" class="text-red-500"/>
+
+                            </div>
+
+                            <h:messages for="info" class="text-blue-500"/>
+                            <!-- Submit Button -->
+                            <!--<h:form rendered="#{empty jobsMB.j.id}">-->
+                            <div class="mb-4 w-full col-span-2">
+                                <h:commandButton value="Add Job Posting" action="#{jobsMB.insertJob()}" id="addjob" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" />
+                            </div>
+
+                        </h:form>
+
+
+                        <h:form id="updatejob" class="grid grid-cols-2 gap-4" rendered="#{not empty jobsMB.existJob}">
+                            <!-- Job Title -->
+                            <div class="mb-4 w-full col-span-2">
+                                <label for="jobTitle" class="block text-gray-700">Job Title:</label>
+                                <!--<h:inputText id="jobTitle" value="#{jobsMB.j.title}" class="form-input" required="true" />-->
+                                <h:inputText id="jobTitle" value="#{jobsMB.j.title}" requiredMessage="Job Title is required" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:leading-6" required="true" />
+                                <h:message for="jobTitle" class="text-red-500"/>
+
+                            </div>
+
+                            <!-- Description -->
+                            <div class="mb-4 w-full col-span-2">
+                                <label for="description" class="block text-gray-700">Description:</label>
+                                <h:inputTextarea id="description" value="#{jobsMB.j.description}" requiredMessage="Description is required"  rows="5" cols="30" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:leading-6" required="true" />
+                                <h:message for="description" class="text-red-500"/>
+
+                            </div>
+
+                            <!-- Experience -->
+                            <div class="mb-4 w-full col-span-2">
+                                <label for="experience" class="block text-gray-700">Experience (years):</label>
+                                <h:inputText id="experience" value="#{jobsMB.j.experience}"  requiredMessage="Experience is required" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:leading-6" required="true" />
+                                <h:message for="experience" class="text-red-500"/>
+
+                            </div>
+
+
+
+                            <!-- Min. Salary -->
+                            <div class="mb-4 w-full">
+                                <label for="min_salary" class="block text-gray-700">Min. Salary:</label>
+                                <h:inputText id="min_salary" value="#{jobsMB.j.minSalary}" requiredMessage="Minimum Salary is required"  class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:leading-6" required="true" />
+                                <h:message for="min_salary" class="text-red-500"/>
+
+                            </div>
+
+                            <!-- Max. Salary -->
+                            <div class="mb-4 w-full">
+                                <label for="max_salary" class="block text-gray-700">Max. Salary:</label>
+                                <h:inputText id="max_salary" value="#{jobsMB.j.maxSalary}" requiredMessage="Maximum Salary is required" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:leading-6" required="true" />
+                                <h:message for="max_salary" class="text-red-500"/>
+
+                            </div>
+
+
+                            <!-- Deadline Remaining -->
+                            <!-- Skills -->
+                            <div class="mb-4 w-full">
+                                <label for="skills" class="block text-gray-700">Skills:</label>
+                               
+                                
+                                <div class="overflow-y-auto rounded-md h-14 ring-1 ring-inset ring-gray-300">
+                                    <h:selectManyCheckbox id="skills" layout="pageDirection" value="#{jobsMB.selectedSkills}" class="block w-full rounded-md border-0 pl-4 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:leading-6" required="true">
+
+                                        <f:selectItems value="#{skillsMB.allSkills}" var="skill" itemValue="#{skill.id}" itemLabel="#{skill.name}"/>
+                                    </h:selectManyCheckbox>
+                                    <h:message for="skills" class="text-red-500"/>
+                                </div>
+
+                            </div>
+
+                            <!-- Job Type -->
+                            <div class="mb-4 w-full">
+                                <label for="jobType" class="block text-gray-700">Job Type:</label>
+                                <h:selectOneMenu id="jobType" value="#{jobsMB.j.jobType}" requiredMessage="Please Select Job Type" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:leading-6" required="true">
+                                    <f:selectItem itemValue="" itemLabel="----- Select Job Type -----" />
+                                    <f:selectItem itemValue="fulltime" itemLabel="Full-time" />
+                                    <f:selectItem itemValue="partime" itemLabel="Part-time" />
+                                    <f:selectItem itemValue="contract" itemLabel="Contract" />
+                                    <f:selectItem itemValue="wfh" itemLabel="Work From Home" />
+                                </h:selectOneMenu>
+                                <h:message for="jobType" class="text-red-500"/>
+
+                            </div>
+
+                            <!-- State -->
+                            <div class="mb-4 w-full">
+                                <label for="state" class="block text-gray-700">State:</label>
+                                <h:selectOneMenu id="state" value="#{jobsMB.selectedState}" requiredMessage="Please Select State"  class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:leading-6" required="true" >
+                                    <f:selectItem itemValue="0" itemLabel="----- Select State -----" />
+
+                                    <f:selectItems value="#{statesMB.states}" var="state" itemValue="#{state.id}" itemLabel="#{state.name}"/> 
+
+
+                                    <f:ajax event="click" execute="state" render="city" listener="#{jobsMB.updateCities()}"/>
+
+
+                                </h:selectOneMenu>
+                                <h:message for="state" class="text-red-500"/>
+                            </div>
+
+                            <!-- City -->
+                            <div class="mb-4 w-full">
+                                <label for="city" class="block text-gray-700">City:</label>
+                                <h:selectOneMenu id="city" value="#{jobsMB.selectedCity}"  class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:leading-6" >
+                                    <f:selectItem itemValue="0" itemLabel="----- Select City -----" />
+
+                                    <f:selectItems rendered="#{not empty jobsMB.cities}" value="#{jobsMB.cities}" var="city" itemValue="#{city.id}" itemLabel="#{city.name}" />
+                                </h:selectOneMenu>
+                                <h:message for="city" class="text-red-500"/>
+
+                            </div>
+
+                            <!-- Status -->
+                            <!--                            <div class="mb-4 w-full">
+                                                            <h:outputLabel rendered="#{not empty jobsMB.j.id}" for="status" class="block text-gray-700" value="Status:"/>
+                                                            <h:selectOneMenu rendered="#{not empty jobsMB.j.id}" id="status" value="#{jobsMB.j.status}" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:leading-6">
+                                                                <f:selectItem itemValue="" itemLabel=" Select Status " />
+                                                                <f:selectItem itemValue="active" itemLabel="Active" />
+                                                                <f:selectItem itemValue="inactive" itemLabel="Inactive" />
+                            
+                                                            </h:selectOneMenu>
+                                                            <h:message for="status" class="text-red-500"/>
+                            
+                                                        </div>-->
+
+                            <!--<h:outputText value="City : #{jobsMB.selectedCity}"/>-->
+
+                            <!-- Submit Button -->
+
+                            <div class="mb-4 w-full col-span-2">
+                                <h:commandButton value="Update Job" action="#{jobsMB.update()}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" />
+                            </div>
+
+                        </h:form>
+
+                    </div>
+
+                    <div class="container mx-auto mt-8 bg-white rounded-lg shadow-lg p-6">
+                        <h2 class="text-2xl font-semibold mb-4">Lists</h2>
+
+                        <f:view>
+
+                            <h:form>
+                                <div class="overflow-x-auto">
+                                    <h:dataTable value="#{jobsMB.jobs}" var="item" styleClass="jobs min-w-full bg-white border-gray-300">
+                                        <h:column >
+                                            <f:facet name="header" >
+                                                <div class="py-2 px-4 border-b text-left h-20">
+                                                    <h:outputText value="Id" />
+                                                </div>
+                                            </f:facet>
+                                            <!--<h:outputText value="#{item.id}" class="py-2 px-4 border-b block h-20"/>-->
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header">
+                                                <div class="py-2 px-4 border-b text-left h-20 ">
+                                                    <h:outputText value="Title"/>
+                                                </div>
+                                            </f:facet>
+                                            <h:outputText value="#{item.title}"  class="py-2 px-4 border-b block h-20 w-60"/>
+                                        </h:column>
+                                        <h:column >
+                                            <f:facet name="header">
+                                                <div class="py-2 px-4 border-b text-left h-20 w-80">
+                                                    <h:outputText value="Description"/>
+                                                </div>
+                                            </f:facet>
+                                            <h:outputText value="#{item.description}" class="py-2 px-4 border-b block h-20 overflow-x-auto"/>
+                                        </h:column>
+                                        <h:column >
+                                            <f:facet name="header">
+                                                <div class="py-2 px-4 border-b text-left h-20">
+                                                    <h:outputText value="Job Type"/>
+                                                </div>
+                                            </f:facet>
+                                            <h:outputText value="#{item.jobType}" class="py-2 px-4 border-b block h-20"/>
+                                        </h:column>
+                                        <h:column class="text-center">
+                                            <f:facet name="header">
+                                                <div class="py-2 px-4 border-b text-left h-20">
+                                                    <h:outputText value="Experience"/>
+                                                </div>
+                                            </f:facet>
+                                            <h:outputText value="#{item.experience} years" class="py-2 px-4 border-b block h-20"/>
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header">
+                                                <div class="py-2 px-4 border-b text-left h-20 w-30">
+                                                    <h:outputText value="Min. Salary"/>
+                                                </div>
+                                            </f:facet>
+                                            <h:outputText value="#{item.minSalary}" class="py-2 px-4 border-b block h-20"/>
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header">
+                                                <div class="py-2 px-4 border-b text-left h-20 w-30">
+                                                    <h:outputText value="Max. Salary"/>
+                                                </div>
+                                            </f:facet>
+                                            <h:outputText value="#{item.maxSalary}" class="py-2 px-4 border-b block h-20"/>
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header">
+                                                <div class="py-2 px-4 border-b text-left h-20 w-60">
+                                                    <h:outputText value="State"/>
+                                                </div>
+                                            </f:facet>
+                                            <h:outputText value="#{item.stateId.name}" class="py-2 px-4 border-b block h-20"/>
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header">
+                                                <div class="py-2 px-4 border-b text-left h-20">
+                                                    <h:outputText value="City"/>
+                                                </div>
+                                            </f:facet>
+                                            <h:outputText value="#{item.cityId.name}" class="py-2 px-4 border-b block h-20"/>
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header">
+                                                <div class="py-2 px-4 border-b text-left h-20">
+                                                    <h:outputText value="Status"/>
+                                                </div>
+                                            </f:facet>
+                                            <h:outputText value="#{item.status}" class="py-2 px-4 border-b block h-20"/>
+                                        </h:column>
+
+                                        <h:column>
+                                            <f:facet name="header">
+                                                <div class="py-2 px-4 border-b text-left h-20">
+                                                    <h:outputText value="Actions"/>
+                                                </div>
+                                            </f:facet>
+                                            <h:panelGroup class="py-2 px-4 border-b block h-20">
+                                                <h:commandLink action="#{jobsMB.updateJob(item)}" value="Edit" styleClass="text-blue-500 hover:text-blue-800 mr-4"/>
+                                                <h:commandLink action="#{jobsMB.deleteJob(item.id,item.stateId.id,item.cityId.id)}" value="Delete" onclick="return confirm('Are you sure you want to delete ?');" styleClass="text-red-500 hover:text-red-800"/>
+                                            </h:panelGroup>
+                                        </h:column>
+                                    </h:dataTable>
+                                </div>
+                            </h:form>
+
+
+                        </f:view>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $(".jobs").dataTable({
+                    "fnRowCallback": function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
+                         var rowNumber = iDisplayIndexFull + 1;
+                        $('td:eq(0)', nRow).html('<p class="py-2 px-4 border-b block h-20">' + rowNumber + '</p>');
+                    }
+                });
+                
+            });
+        </script>
+    </h:body>
+</html>
+
+

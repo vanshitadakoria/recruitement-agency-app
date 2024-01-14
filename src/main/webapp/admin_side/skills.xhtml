@@ -1,0 +1,205 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      >
+    <h:head>
+        <title>Admin - Skills</title>
+        <h:outputStylesheet name="css/output.css" />
+        <h:outputStylesheet name="js/datatables.min.css"/>
+        <h:outputScript name="js/jquery.min.js"/>
+        <h:outputScript name="js/datatables.min.js"/>
+         
+    </h:head>
+    <h:body class="font-sans bg-gray-100">
+        <div class="flex h-screen bg-gray-200">
+            <!-- Sidebar -->
+            <div class="w-64 bg-gray-800">
+                <div class="flex items-center justify-center mt-4">
+                    <img src="../logo/logonobg.jpg" alt="Recruitment Agency" class="w-5/6 rounded-lg h-16 bg-gray-200 border border-gray-800"></img>
+                </div>
+
+                <nav class="mt-10">
+                    <h:link outcome="dashboard.jsf" class="flex items-center px-6 py-2 text-gray-200 hover:border-blue-500 ">
+                        <svg class="w-6 h-6 mr-4 text-white dark:text-white" aria-hidden="true" width="20" height="20" fill="none" viewBox="0 0 20 20">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8v10a1 1 0 0 0 1 1h4v-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v5h4a1 1 0 0 0 1-1V8M1 10l9-9 9 9"/>
+                        </svg>
+                        <span class="text-xl">Dashboard</span>
+                    </h:link>
+                    <h:link outcome="users.jsf" class="flex items-center px-6 py-2 mt-2 text-gray-200 hover:border-blue-500">
+                        <svg class="w-6 h-6 mr-4 text-white dark:text-white" aria-hidden="true" fill="none" width="20" height="20" viewBox="0 0 20 20">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M14 3a3 3 0 1 1-1.614 5.53M15 12a4 4 0 0 1 4 4v1h-3.348M10 4.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0ZM5 11h3a4 4 0 0 1 4 4v2H1v-2a4 4 0 0 1 4-4Z"/>
+                        </svg>
+                        <span class="text-xl">Users</span>
+                    </h:link>
+                    <h:link outcome="jobs.jsf" class="flex items-center px-6 py-2 mt-2 text-gray-200 hover:border-blue-500">
+                        <svg class="w-6 h-6 mr-4 text-white dark:text-white" aria-hidden="true" width="20" height="20" fill="none" viewBox="0 0 20 20">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-width="1.5" d="M1 10c1.5 1.5 5.25 3 9 3s7.5-1.5 9-3m-9-1h.01M2 19h16a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1ZM14 5V3a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v2h8Z"/>
+                        </svg>
+                        <span class="text-xl">Jobs</span>
+                    </h:link>
+                    <h:link outcome="skills.jsf" class="flex items-center px-6 py-2 mt-2 text-gray-200 border-l-4  border-blue-500 ">
+                        <svg class="w-6 h-6 mr-4 text-white dark:text-white" aria-hidden="true" fill="none" width="20" height="20" viewBox="0 0 20 20">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5h8m-1-3a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1m6 0v3H6V2m6 0h4a1 1 0 0 1 1 1v15a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1h4m0 9.464 2.025 1.965L12 9.571"/>
+                        </svg>
+                        <span class="text-xl font-semibold">Skills</span>
+                    </h:link>
+                    <h:link outcome="candidates.jsf" class="flex items-center px-6 py-2 mt-2 text-gray-200 hover:border-blue-500">
+                        <svg class="w-6 h-6 mr-4 text-white dark:text-white" aria-hidden="true" width="20" height="20" fill="none" viewBox="0 0 20 20">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 4H1m3 4H1m3 4H1m3 4H1m6.071.286a3.429 3.429 0 1 1 6.858 0M4 1h12a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1Zm9 6.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Z"/>
+                        </svg>
+                        <span class="text-xl">Candidates</span>
+                    </h:link>
+                    <h:link outcome="plan_transactions.jsf" class="flex items-center px-6 py-2 mt-2 text-gray-200 hover:border-blue-500">
+                        <svg class="w-6 h-6 mr-4 text-white dark:text-white" aria-hidden="true" width="20" height="20" fill="none" viewBox="0 0 16 20">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M1 17V2a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a2 2 0 0 0-2 2Zm0 0a2 2 0 0 0 2 2h12M5 15V1m8 18v-4"/>
+                        </svg>
+                        <span class="text-xl">Transactions</span>
+                    </h:link>
+                </nav>
+               
+            </div>
+
+            <!-- Content -->
+            <div class="flex-1 flex flex-col w-4/5">
+                <!-- Your content goes here -->
+                <div class="p-6 overflow-y-auto">
+                    <div class="flex justify-between mb-4">
+                        <h2 class="text-3xl font-semibold mb-4">Skills</h2>
+                        <h:form>
+                            <h:commandButton action="#{loginMB.logout()}" id="logout" value="Sign Out" class="text-md text-white bg-red-600 py-2 px-2 rounded hover:bg-red-800" />
+                        </h:form>
+                    </div>
+                    <div class="container mx-auto mt-4 bg-white rounded-lg shadow-lg p-6">
+
+                        <h2 class="text-2xl font-semibold mb-4">Details</h2>
+
+                        <h:form id="addskill" class="grid grid-cols-2 gap-4" rendered="#{empty skillsMB.selectedSkill}">
+
+                            <!-- Add new skill form fields -->
+                            <!-- Skill Name -->
+                            <!--<h:panelGrid columns="2" rendered="#{empty skillsMB.selectedSkill}">-->
+
+                            <div class="mb-4 w-full col-span-2">
+                                <label for="skillName" class="block text-gray-700">Skill Name:</label>
+                                <h:inputText id="skillName" value="#{skillsMB.skill.name}" requiredMessage="Skill Name is required" binding="#{skillName}" class="block w-full rounded-md border-0 py-1.5 p-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:leading-6" required="true" />
+                                <h:message for="skillName" class="text-red-500"/>
+                            </div>
+
+                            <!-- Description -->
+                            <div class="mb-4 w-full col-span-2">
+                                <label for="description" class="block text-gray-700">Description:</label>
+                                <h:inputTextarea id="description" value="#{skillsMB.skill.description}" requiredMessage="Description is required" rows="5" cols="30" class="block w-full rounded-md border-0 py-1.5 p-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:leading-6" required="true" />
+                                <h:message for="description" class="text-red-500"/>
+
+                            </div>
+
+                            <!-- Submit Button -->
+                            <div class="mb-4 w-full col-span-2">
+                                <h:commandButton value="Add Skill" action="#{skillsMB.addSkill(skillName.value)}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" />
+                            </div>
+                            <!--</h:panelGrid>-->
+
+                        </h:form> 
+
+                        <h:form id="updateskill" class="grid grid-cols-2 gap-4" rendered="#{not empty skillsMB.selectedSkill}">
+                            <!-- Update form fields -->
+                            <!--<h:panelGrid columns="2" >-->
+
+                            <div class="mb-4 w-full col-span-2">
+                                <label for="editname" class="block text-gray-700">Skill Name:</label>
+                                <h:inputText id="editname" value="#{skillsMB.skill.name}" requiredMessage="Skill Name is required"  class="block w-full rounded-md border-0 py-1.5 p-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:leading-6" required="true" />
+                                <h:message for="editname" class="text-red-500"/>
+
+                            </div>
+
+                            <!-- Description -->
+                            <div class="mb-4 w-full col-span-2">
+                                <label for="editdescription" class="block text-gray-700">Description:</label>
+                                <h:inputTextarea id="editdescription" value="#{skillsMB.skill.description}" requiredMessage="Description is required" rows="5" cols="30" class="block w-full rounded-md border-0 py-1.5 p-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:leading-6" required="true" />
+                                <h:message for="editdescription" class="text-red-500"/>
+
+                            </div>
+
+                            <div class="mb-4 w-full col-span-2">
+                                <h:commandButton value="Update Skill" action="#{skillsMB.update()}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"/>
+
+                            </div>
+
+                        </h:form>
+
+
+                    </div>
+
+                    <div class="container mx-auto mt-8 bg-white rounded-lg shadow-lg p-6">
+                        <h2 class="text-2xl font-semibold mb-4">Lists</h2>
+                        <f:view>
+
+
+                            <h:form>
+                                <div class="overflow-x-auto">
+
+                                    <h:dataTable value="#{skillsMB.allSkills}" var="item" styleClass="skills min-w-full bg-white border-gray-300">
+                                        <h:column>
+                                            <f:facet name="header" >
+                                                <div class="py-2 px-4 border-b text-left">
+                                                    <h:outputText value="Id" />
+                                                </div>
+                                            </f:facet>
+                                            <!--<h:outputText value="#{item.id}" class="py-2 px-4 border-b block"/>-->
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header">
+                                                <div class="py-2 px-4 border-b text-left">
+                                                    <h:outputText value="Name"/>
+                                                </div>
+                                            </f:facet>
+                                            <h:outputText value="#{item.name}" class="py-2 px-4 border-b block"/>
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header">
+                                                <div class="py-2 px-4 border-b text-left">
+                                                    <h:outputText value="Description"/>
+                                                </div>
+                                            </f:facet>
+                                            <h:outputText value="#{item.description}" class="py-2 px-4 border-b block"/>
+                                        </h:column>
+
+                                        <h:column>
+                                            <f:facet name="header">
+                                                <div class="py-2 px-4 border-b text-left">
+                                                    <h:outputText value="Actions"/>
+                                                </div>
+                                            </f:facet>
+                                            <h:panelGroup class="py-2 px-4 border-b block">
+                                                <h:commandLink action="#{skillsMB.updateSkill(item)}" value="Edit" styleClass="text-blue-500 hover:text-blue-800 mr-4"/>
+                                                <h:commandLink action="#{skillsMB.deleteSkill(item)}" value="Delete" onclick="return confirm('Are you sure you want to delete?');" styleClass="text-red-500 hover:text-red-800"/>
+                                            </h:panelGroup>
+                                        </h:column>
+                                    </h:dataTable>
+                                </div>
+                            </h:form>
+
+
+                        </f:view>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <script type="text/javascript">
+        $(document).ready(function () {
+            $(".skills").dataTable({
+                    "fnRowCallback": function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
+                         var rowNumber = iDisplayIndexFull + 1;
+                        $('td:eq(0)', nRow).html('<p class="py-2 px-4 border-b block">' + rowNumber + '</p>');
+                    }
+                });
+        });
+        </script>
+    </h:body>
+    
+</html>

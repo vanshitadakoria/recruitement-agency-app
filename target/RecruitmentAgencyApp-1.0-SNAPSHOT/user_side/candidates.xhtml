@@ -1,0 +1,402 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core" 
+      >
+    <h:head>
+        <title>User - Candidates</title>
+        <h:outputStylesheet name="css/output.css" />
+        <h:outputStylesheet name="js/datatables.min.css"/>
+        <h:outputScript name="js/jquery.min.js"/>
+        <h:outputScript name="js/datatables.min.js"/>
+
+    </h:head>
+    <h:body class="font-sans bg-gray-100">
+        <div class="h-screen bg-gray-200">
+
+            <!-- Top Navbar -->
+
+
+            <div class="flex justify-between items-stretch bg-white border-b border-gray-500 h-14">
+
+
+                <!-- Logo in the Intersection -->
+                <div class="flex text-white text-2xl bg-gray-300 w-64 items-center px-4">
+                    <img src="../logo/logonobg.jpg" alt="Recruitment Agency" class="w-full h-14"></img>
+                </div>
+
+                <!-- Avatar and User Menu on the Right -->
+                <div class="flex items-center mr-4">
+                    <button type="button" onclick="return toggleDropdown();" class="flex text-sm bg-gray-800 rounded-full focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" id="user-menu-button-2" aria-expanded="false" data-dropdown-toggle="dropdown-2">
+                        <span class="sr-only">Open user menu</span>
+                        <img class="w-10 h-10 rounded-full" src="../logo/user.jpg" alt="user photo"/>
+                    </button>
+                </div>
+
+                <!--User Dropdown Menu--> 
+                <div class="z-50 my-4 text-base list-none bg-gray-100 divide-y divide-gray-100 rounded shadow-lg shadow-gray-500/50 dark:bg-gray-700 dark:divide-gray-600" id="dropdown-2" data-popper-placement="bottom" style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate(1490px, 40px);">
+                    <!--User Info--> 
+                    <div class="px-4 py-3" role="none">
+                        <h:outputText value="Username" class="text-sm text-gray-900 dark:text-white" role="none"/>
+                        <br></br>    
+                        <h:outputText value="#{sessionScope['user-email']}" class="text-sm font-medium text-gray-900 truncate dark:text-gray-300" role="none"/>
+                    </div>
+
+                    <!--User Menu Options--> 
+                    <ul class="py-1" role="none">
+                        <li>
+                            <h:link outcome="profile" value="Profile" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem"/>
+                        </li>
+
+                        <li>
+                            <h:link outcome="earnings" value="Earnings" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem"/>
+
+                            <!--<a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">Earnings</a>-->
+                        </li>
+                        <li>
+                            <h:form>
+                                <h:commandButton action="#{loginMB.logout()}" value="Sign Out" class="block mx-2.5 px-4 py-2 bg-red-500 text-md text-white hover:bg-red-600 dark:text-gray-300 dark:hover:bg-red-600 dark:hover:text-white" role="menuitem"/>
+                            </h:form>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+
+            <!-- Sidebar -->
+            <div class="flex h-full overflow-hidden">
+
+                <div class="w-64 bg-gray-800 h-screen overflow-y-auto">
+
+                    <nav class="mt-4">
+                        <h:link outcome="dashboard.jsf" class="flex items-center px-6 py-2 text-gray-200 hover:border-blue-500 ">
+                            <svg class="w-6 h-6 text-white mr-5 dark:text-white" aria-hidden="true" fill="none" viewBox="0 0 20 20">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8v10a1 1 0 0 0 1 1h4v-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v5h4a1 1 0 0 0 1-1V8M1 10l9-9 9 9"/>
+                            </svg>
+                            <span class="text-lg">Dashboard</span>
+                        </h:link>
+                        <h:link outcome="candidates.jsf" class="flex items-center px-6 py-2 mt-2 text-gray-200 border-l-4  border-blue-500 ">
+                            <svg class="w-6 h-6 text-white mr-4 dark:text-white" aria-hidden="true" fill="none" viewBox="0 0 20 18">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 3a3 3 0 1 1-1.614 5.53M15 12a4 4 0 0 1 4 4v1h-3.348M10 4.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0ZM5 11h3a4 4 0 0 1 4 4v2H1v-2a4 4 0 0 1 4-4Z"/>
+                            </svg>
+                            <span class="text-lg font-semibold">Candidates</span>
+                        </h:link>
+                        <h:link outcome="rounds.jsf" class="flex items-center px-6 py-2 mt-2 text-gray-200 hover:border-blue-500">
+                            <svg class="w-6 h-6 mr-4 text-white dark:text-white" aria-hidden="true" fill="none" viewBox="0 0 20 16">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5h6M9 8h6m-6 3h6M4.996 5h.01m-.01 3h.01m-.01 3h.01M2 1h16a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1Z"/>
+                            </svg>
+                            <span class="text-lg ">Rounds</span>
+                        </h:link>
+                    </nav>
+                </div>
+
+                <!-- Content -->
+                <div class="flex-1 flex flex-col bg-gray-200 overflow-y-auto">
+
+                    <!-- Your content goes here -->
+                    <div class="p-6 ">
+
+
+                        <h1 class="text-3xl font-semibold mb-4">Candidates</h1>
+
+
+                        <div class="container mx-auto mt-8 bg-white rounded-lg shadow-lg p-6">
+
+                            <div class="grid grid-cols-2">
+                                <h2 class="text-2xl font-semibold mb-4">Lists</h2>
+                                <div class="text-right">
+                                    <button onclick="addCandidate()" class="w-40 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">+ Add Candidate</button>
+                                </div>
+                            </div>
+                            <f:view>
+
+                                <h:form>
+                                    <div class="overflow-x-auto">
+
+                                        <h:dataTable value="#{candidateMB.getCandidatesOfUser(sessionScope['user-email'])}" var="item" styleClass="candidates min-w-full bg-white border-gray-300">
+                                            <h:column>
+                                                <f:facet name="header" >
+                                                    <div class="py-2 px-4 border-b text-left">
+                                                        <h:outputText value="Id" />
+                                                    </div>
+                                                </f:facet>
+                                                <!--<h:outputText value="#{item.id}" class="py-2 px-4 border-b block"/>-->
+                                                <h:outputText class="py-2 px-4 border-b block"/>
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">
+                                                    <div class="py-2 px-4 border-b text-left">
+                                                        <h:outputText value="Name"/>
+                                                    </div>
+                                                </f:facet>
+                                                <h:outputText value="#{item.firstname} #{item.lastname}" class="py-2 px-4 border-b block w-max"/>
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">
+                                                    <div class="py-2 px-4 border-b text-left">
+                                                        <h:outputText value="Email"/>
+                                                    </div>
+                                                </f:facet>
+                                                <h:outputText value="#{item.email}" class="py-2 px-4 border-b block"/>
+                                            </h:column>
+
+                                            <h:column>
+                                                <f:facet name="header">
+                                                    <div class="py-2 px-4 border-b text-left">
+                                                        <h:outputText value="Phone No"/>
+                                                    </div>
+                                                </f:facet>
+                                                <h:outputText value="#{item.phoneNo}" class="py-2 px-4 border-b block"/>
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">
+                                                    <div class="py-2 px-4 border-b text-left">
+                                                        <h:outputText value="Job Title"/>
+                                                    </div>
+                                                </f:facet>
+                                                <h:outputText value="#{item.jobId.title}" class="py-2 px-4 border-b block w-max"/>
+                                            </h:column>
+                                            <h:column class="text-center">
+                                                <f:facet name="header">
+                                                    <div class="py-2 px-4 border-b text-left">
+                                                        <h:outputText value="Resume"/>
+                                                    </div>
+                                                </f:facet>
+
+
+
+                                                <h:commandButton value="View" onclick="return openPdf('#{request.contextPath}/#{item.resumeFile}')" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+
+                                                </h:commandButton>
+                                                <!--<h:outputText value="#{request.contextPath}/#{item.resumeFile}" class="py-2 px-4 border-b block"/>-->
+                                            </h:column>
+
+                                            <!-- Rounds Column -->
+                                            <h:column>
+                                                <f:facet name="header">
+                                                    <div class="py-2 px-4 border-b text-left">
+                                                        <h:outputText value="Rounds"/>
+                                                    </div>
+                                                </f:facet>
+                                                <!-- Dotted Structure -->
+                                                <div class="flex mt-2">
+                                                    <ui:repeat var="round" value="#{roundsMB.rounds}">
+                                                        <div class="dot h-6 w-6 rounded-full" style="background-color: #{roundsMB.getHighestRoundNumber(item.id) >= round.id ? 'orange' : 'lightgray'};"></div>
+                                                        <!--<div class="dot bg-gray-300 h-6 w-6 rounded-full" style="background-color: green"></div>-->
+                                                    </ui:repeat>
+                                                </div>
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">
+                                                    <div class="py-2 px-4 border-b text-left">
+                                                        <h:outputText value="Actions"/>
+                                                    </div>
+                                                </f:facet>
+                                                <h:panelGroup class="py-2 px-4 border-b block">
+                                                    <h:commandLink action="#{candidateMB.editCandidate(item)}" value="Edit" styleClass="text-blue-500 hover:text-blue-800 mr-4 cursor-pointer"/>
+                                                    <h:commandLink action="#{candidateMB.deleteCandidate(item)}" value="Delete" onclick="return confirm('Are you sure you want to delete?');" styleClass="text-red-500 hover:text-red-800"/>
+                                                </h:panelGroup>
+                                            </h:column>
+                                        </h:dataTable>
+                                    </div>
+                                </h:form>
+
+
+                            </f:view>
+
+
+                        </div>
+
+                        <div id="addcandidateform" class="container mx-auto mt-8 bg-white rounded-lg shadow-lg p-6">
+
+                            <h2 class="text-2xl font-semibold mb-4">Details</h2>
+
+
+                            <h:form id="addcandidate" rendered="#{empty candidateMB.selC}" enctype="multipart/form-data" class="grid grid-cols-2 gap-4">
+
+                                <!-- Candidate firstname -->
+                                <div class="mb-4 w-full col-span-2">
+                                    <label for="firstname" class="block text-gray-700">First Name:</label>
+                                    <h:inputText id="firstname" value="#{candidateMB.c.firstname}" class="block w-full rounded-md border-0 py-1.5 p-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:leading-6" required="true" requiredMessage="First Name is required"/>
+                                    <h:message for="firstname" class="text-red-500"/>
+                                </div>
+
+                                <!-- Candidate lastname -->
+                                <div class="mb-4 w-full col-span-2">
+                                    <label for="lastname" class="block text-gray-700">Last Name:</label>
+                                    <h:inputText id="lastname" value="#{candidateMB.c.lastname}" class="block w-full rounded-md border-0 py-1.5 p-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:leading-6" required="true" requiredMessage="Last Name is required"/>
+                                    <h:message for="lastname" class="text-red-500"/>
+                                </div>
+
+                                <!-- Email -->
+                                <div class="mb-4 w-full col-span-2">
+                                    <label for="email" class="block text-gray-700">Email:</label>
+                                    <h:inputText id="email" value="#{candidateMB.c.email}" class="block w-full rounded-md border-0 py-1.5 p-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:leading-6" required="true" requiredMessage="Email is required"/>
+                                    <h:message for="email" class="text-red-500"/>
+                                </div>
+
+                                <!-- Phone No -->
+                                <div class="mb-4 w-full col-span-2">
+                                    <label for="phone" class="block text-gray-700">Phone No:</label>
+                                    <h:inputText id="phone" value="#{candidateMB.c.phoneNo}" class="block w-full rounded-md border-0 py-1.5 p-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:leading-6" required="true" requiredMessage="Phone No is required"/>
+                                    <h:message for="phone" class="text-red-500"/>
+                                </div>
+
+                                <!-- Jobs -->
+                                <div class="mb-4 w-full">
+                                    <label for="jobs" class="block text-gray-700">Job : </label>
+                                    <h:selectOneMenu id="jobs" value="#{candidateMB.selectedJob}" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:leading-6" required="true" requiredMessage="This field is required">
+                                        <f:selectItem itemValue="" itemLabel="----- Select Job -----" />
+
+                                        <f:selectItems value="#{jobsMB.jobs}" var="job" itemValue="#{job.id}" itemLabel="#{job.title}"/>
+                                    </h:selectOneMenu>
+                                    <h:message for="jobs" class="text-red-500"/>
+
+                                </div>
+
+                                <!-- File input for resume file -->
+                                <div class="mb-4 w-full">
+                                    <label for="jobs" class="block text-gray-700">Resume File : </label>
+                                    <h:inputFile id="resumeFile" value="#{candidateMB.resume_file}" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:leading-6"  required="true" requiredMessage="This field is required"/>
+                                    <h:message for="resumeFile" class="text-red-500"/>
+
+                                </div>
+                                
+                                <h:messages globalOnly="true" class="text-red-500"/>
+                                <!-- Submit Button -->
+                                <div class="mb-4 w-full col-span-2">
+                                    <h:commandButton value="Add Candidate" action="#{candidateMB.addCandidate()}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" />
+                                </div>
+                                <!--</h:panelGrid>-->
+
+                            </h:form> 
+                            
+                            <h:form id="editcandidate" rendered="#{not empty candidateMB.selC}" enctype="multipart/form-data" class="grid grid-cols-2 gap-4">
+
+                                <!-- Candidate firstname -->
+                                <div class="mb-4 w-full col-span-2">
+                                    <label for="firstname" class="block text-gray-700">First Name:</label>
+                                    <h:inputText id="firstname" value="#{candidateMB.c.firstname}" class="block w-full rounded-md border-0 py-1.5 p-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:leading-6" required="true" requiredMessage="This field is required"/>
+                                    <h:message for="firstname" class="text-red-500"/>
+                                </div>
+
+                                <!-- Candidate lastname -->
+                                <div class="mb-4 w-full col-span-2">
+                                    <label for="lastname" class="block text-gray-700">Last Name:</label>
+                                    <h:inputText id="lastname" value="#{candidateMB.c.lastname}" class="block w-full rounded-md border-0 py-1.5 p-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:leading-6" required="true" requiredMessage="This field is required"/>
+                                    <h:message for="lastname" class="text-red-500"/>
+                                </div>
+
+                                <!-- Email -->
+                                <div class="mb-4 w-full col-span-2">
+                                    <label for="email" class="block text-gray-700">Email:</label>
+                                    <h:inputText id="email" value="#{candidateMB.c.email}" class="block w-full rounded-md border-0 py-1.5 p-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:leading-6" required="true" requiredMessage="This field is required"/>
+                                    <h:message for="email" class="text-red-500"/>
+                                </div>
+
+                                <!-- Phone No -->
+                                <div class="mb-4 w-full col-span-2">
+                                    <label for="phone" class="block text-gray-700">Phone No:</label>
+                                    <h:inputText id="phone" value="#{candidateMB.c.phoneNo}" class="block w-full rounded-md border-0 py-1.5 p-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:leading-6" required="true" requiredMessage="This field is required"/>
+                                    <h:message for="phone" class="text-red-500"/>
+                                </div>
+
+                                <!-- Jobs -->
+                                <div class="mb-4 w-full">
+                                    <label for="jobs" class="block text-gray-700">Job : </label>
+                                    <h:selectOneMenu id="jobs" value="#{candidateMB.selectedJob}" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:leading-6" required="true" requiredMessage="This field is required">
+                                        <f:selectItem itemValue="" itemLabel="----- Select Job -----" />
+
+                                        <f:selectItems value="#{jobsMB.jobs}" var="job" itemValue="#{job.id}" itemLabel="#{job.title}"/>
+                                    </h:selectOneMenu>
+                                    <h:message for="jobs" class="text-red-500"/>
+
+                                </div>
+
+                                <!-- File input for resume file -->
+                                <!--                                <div class="mb-4 w-full">
+                                                                    <label for="jobs" class="block text-gray-700">Resume File : </label>
+                                                                    <h:inputFile id="resumeFile" value="#{candidateMB.resume_file}" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:leading-6"  required="true" />
+                                                                    <h:message for="resumeFile" class="text-red-500"/>
+                                
+                                                                </div>-->
+                                <!-- Submit Button -->
+                                <div class="mb-4 w-full col-span-2">
+                                    <h:commandButton value="Update Candidate" action="#{candidateMB.update()}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" />
+                                </div>
+                                <!--</h:panelGrid>-->
+
+                            </h:form> 
+
+                        </div>
+
+                    </div>
+                    <!-- Footer -->
+                    <footer class="bg-white mb-0 rounded-lg shadow sm:flex sm:items-center sm:justify-between sm:p-6 dark:bg-gray-800 antialiased mt-auto">
+                        <p class="mb-4 text-sm text-center text-gray-500 dark:text-gray-400 sm:mb-0">
+                            &copy; 2023 <a href="dashboard.jsf" class="hover:underline">Recruitment Agency</a>. All rights reserved.
+                        </p>
+                        <div class="flex justify-center items-center space-x-1">
+                            <a href="#" class="inline-flex justify-center p-1 text-gray-500 rounded-lg cursor-pointer dark:text-gray-400 dark:hover:text-white hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-600">
+                                <svg class="w-5 h-5 mr-2 text-gray-500 dark:text-white" aria-hidden="true" fill="none" viewBox="0 0 18 18">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m16.344 12.168-1.4-1.4a1.98 1.98 0 0 0-2.8 0l-.7.7a1.98 1.98 0 0 1-2.8 0l-2.1-2.1a1.98 1.98 0 0 1 0-2.8l.7-.7a1.981 1.981 0 0 0 0-2.8l-1.4-1.4a1.828 1.828 0 0 0-2.8 0C-.638 5.323 1.1 9.542 4.78 13.22c3.68 3.678 7.9 5.418 11.564 1.752a1.828 1.828 0 0 0 0-2.804Z"/>
+                                </svg>
+                                <p class="text-md">9809809809</p>
+                            </a>
+                        </div>
+                    </footer>
+                </div>
+
+            </div>
+
+
+
+
+        </div>
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+//                $("#addcandidateform").hide();
+
+                $(".candidates").dataTable({
+                    "fnRowCallback": function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
+                         var rowNumber = iDisplayIndexFull + 1;
+                        $('td:eq(0)', nRow).html('<p class="py-2 px-4 border-b block">' + rowNumber + '</p>');
+                    }
+                });
+                $("#dropdown-2").hide();
+
+            });
+            function openPdf(pdfUrl) {
+                window.open(pdfUrl, '_blank');
+            }
+            function addCandidate() {
+                console.log(document.getElementById("addcandidate"));
+                $("#addcandidateform").show();
+            }
+            
+            function editCandidate() {
+                $("#editcandidate").show();
+            }
+            function toggleDropdown() {
+                $("#dropdown-2").toggle();
+//                var dropdown = document.getElementById(dropdownId);
+//                dropdown.style.display = dropdown.style.display === 'none' ? 'block' : 'none';
+            }
+//            $('.dot').on('click', function () {
+//                // Reset all dots and lines to default color
+//                $('.dot, .line').removeClass('bg-blue-500');
+//
+//                // Add the selected color to the clicked dot and previous dots
+//                $(this).prevAll('.dot').addBack().addClass('bg-blue-500');
+//
+//                // Add the selected color to the lines between the dots
+//                $(this).prevAll('.line').addClass('bg-blue-500');
+//            });
+        </script>
+    </h:body>
+</html>

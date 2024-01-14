@@ -1,0 +1,260 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      >
+    
+    <h:head>
+        <title>Admin - Users</title>
+        <h:outputStylesheet name="css/output.css"/>
+        <h:outputStylesheet name="js/datatables.min.css"/>
+        <h:outputScript name="js/jquery.min.js"/>
+        <h:outputScript name="js/datatables.min.js"/>
+
+    </h:head>
+    <h:body class="font-sans bg-gray-100">
+        <div class="flex h-screen bg-gray-200">
+            <!-- Sidebar -->
+            <div class="w-64 bg-gray-800">
+                <div class="flex items-center justify-center mt-4">
+                    <img src="../logo/logonobg.jpg" alt="Recruitment Agency" class="w-5/6 rounded-lg h-16 bg-gray-200 border border-gray-800"></img>
+                </div>
+
+                <nav class="mt-10">
+                    <h:link outcome="dashboard.jsf" class="flex items-center px-6 py-2 text-gray-200 hover:border-blue-500">
+                        <svg class="w-6 h-6 mr-4 text-white dark:text-white" aria-hidden="true" width="20" height="20" fill="none" viewBox="0 0 20 20">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8v10a1 1 0 0 0 1 1h4v-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v5h4a1 1 0 0 0 1-1V8M1 10l9-9 9 9"/>
+                        </svg>
+                        <span class="text-xl ">Dashboard</span>
+                    </h:link>
+                    <h:link outcome="users.jsf" class="flex items-center px-6 py-2 mt-2 text-gray-200 border-l-4 border-blue-500">
+                        <svg class="w-6 h-6 mr-4 text-white dark:text-white" aria-hidden="true" fill="none" width="20" height="20" viewBox="0 0 20 20">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 3a3 3 0 1 1-1.614 5.53M15 12a4 4 0 0 1 4 4v1h-3.348M10 4.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0ZM5 11h3a4 4 0 0 1 4 4v2H1v-2a4 4 0 0 1 4-4Z"/>
+                        </svg>
+                        <span class="text-xl font-semibold">Users</span>
+                    </h:link>
+                    <h:link outcome="jobs.jsf" class="flex items-center px-6 py-2 mt-2 text-gray-200 hover:border-blue-500">
+                        <svg class="w-6 h-6 mr-4 text-white dark:text-white" aria-hidden="true" width="20" height="20" fill="none" viewBox="0 0 20 20">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-width="1.5" d="M1 10c1.5 1.5 5.25 3 9 3s7.5-1.5 9-3m-9-1h.01M2 19h16a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1ZM14 5V3a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v2h8Z"/>
+                        </svg>
+                        <span class="text-xl">Jobs</span>
+                    </h:link>
+                    <h:link outcome="skills.jsf" class="flex items-center px-6 py-2 mt-2 text-gray-200 hover:border-blue-500">
+                        <svg class="w-6 h-6 mr-4 text-white dark:text-white" aria-hidden="true" fill="none" width="20" height="20" viewBox="0 0 20 20">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 5h8m-1-3a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1m6 0v3H6V2m6 0h4a1 1 0 0 1 1 1v15a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1h4m0 9.464 2.025 1.965L12 9.571"/>
+                        </svg>
+                        <span class="text-xl">Skills</span>
+                    </h:link>
+                    <h:link outcome="candidates.jsf" class="flex items-center px-6 py-2 mt-2 text-gray-200 hover:border-blue-500">
+                        <svg class="w-6 h-6 mr-4 text-white dark:text-white" aria-hidden="true" width="20" height="20" fill="none" viewBox="0 0 20 20">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 4H1m3 4H1m3 4H1m3 4H1m6.071.286a3.429 3.429 0 1 1 6.858 0M4 1h12a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1Zm9 6.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Z"/>
+                        </svg>
+                        <span class="text-xl">Candidates</span>
+                    </h:link>
+                    <h:link outcome="plan_transactions.jsf" class="flex items-center px-6 py-2 mt-2 text-gray-200 hover:border-blue-500">
+                        <svg class="w-6 h-6 mr-4 text-white dark:text-white" aria-hidden="true" width="20" height="20" fill="none" viewBox="0 0 16 20">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M1 17V2a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a2 2 0 0 0-2 2Zm0 0a2 2 0 0 0 2 2h12M5 15V1m8 18v-4"/>
+                        </svg>
+                        <span class="text-xl">Transactions</span>
+                    </h:link>
+                </nav>
+                
+            </div>
+
+            <!-- Content -->
+            <div class="flex-1 flex flex-col w-4/5">
+                <!-- Your content goes here -->
+                <div class="p-6 overflow-y-auto">
+                    <!-- Content for the selected tab -->
+                    
+                    <div class="flex justify-between mb-4">
+                        <h2 class="text-3xl font-semibold mb-4">Users</h2>
+                        <h:form>
+                            <h:commandButton action="#{loginMB.logout()}" id="logout" value="Sign Out" class="text-md text-white bg-red-600 py-2 px-2 rounded hover:bg-red-800" />
+                        </h:form>
+                    </div>
+                    <!-- Add content for other tabs similarly -->
+
+                    <div class="container mx-auto mt-4 bg-white rounded-lg shadow-lg p-6">
+                        <h2 class="text-2xl font-semibold mb-4">Lists</h2>
+                        <f:view>
+
+                            <h:form>
+                                <div class="overflow-x-auto">
+                                    <h:dataTable value="#{usersMB.users}" var="item" styleClass="users min-w-full bg-white border-gray-300">
+                                        <h:column>
+                                            <f:facet name="header">
+                                                <div class="py-2 px-4 border-b text-left">
+                                                    <h:outputText value="Id" />
+                                                </div>
+                                            </f:facet>
+                                            <!--<h:outputText value="#{item.id}" class="py-2 px-2 border-b block"/>-->
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header">
+                                                <div class="py-2 px-4 border-b text-left w-40">
+                                                    <h:outputText value="Name"/>
+                                                </div>
+                                            </f:facet>
+                                            <h:outputText value="#{item.name}" class="py-2 px-2 border-b block"/>
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header">
+                                                <div class="py-2 px-4 border-b text-left w-40">
+                                                    <h:outputText value="Email"/>
+                                                </div>
+                                            </f:facet>
+                                            <h:outputText value="#{item.email}" class="py-2 px-2 border-b block"/>
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header">
+                                                <div class="py-2 px-4 border-b text-left w-40">
+                                                    <h:outputText value="Phone No."/>
+                                                </div>
+                                            </f:facet>
+                                            <h:outputText value="#{item.phoneNo}" class="py-2 px-2 border-b block w-50"/>
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header">
+                                                <div class="py-2 px-4 border-b text-left w-40">
+                                                    <h:outputText value="DOB"/>
+                                                </div>
+                                            </f:facet>
+                                            <h:outputText value="#{item.dob}" class="py-2 px-4 border-b block">
+                                                <f:convertDateTime pattern="dd-MM-yyyy"/>
+                                            </h:outputText>
+                                            
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header">
+                                                <div class="py-2 px-4 border-b text-left w-80">
+                                                    <h:outputText value="Password"/>
+                                                </div>
+                                            </f:facet>
+                                            <h:outputText value="#{item.password}" class="py-2 px-2 border-b block w-80 overflow-y-auto"/>
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header">
+                                                <div class="py-2 px-4 border-b text-left w-40">
+                                                    <h:outputText value="VPA Address"/>
+                                                </div>
+                                            </f:facet>
+                                            <h:outputText value="#{item.vpaAddress}" class="py-2 px-2 border-b block"/>
+                                        </h:column>
+                                        
+                                        <h:column>
+                                            <f:facet name="header">
+                                                <div class="py-2 px-4 border-b text-left">
+                                                    <h:outputText value="Actions"/>
+                                                </div>
+                                            </f:facet>
+                                            <h:panelGroup class="py-2 px-4 border-b block">
+                                                <h:commandLink action="#{usersMB.updateUser(item)}" value="Edit" styleClass="text-blue-500 hover:text-blue-800 mr-4"/>
+                                                <h:commandLink action="#{usersMB.deleteUser(item)}" value="Delete" onclick="return confirm('Are you sure you want to delete ?');" styleClass="text-red-500 hover:text-red-800"/>
+                                            </h:panelGroup>
+                                        </h:column>
+                                    </h:dataTable>
+                                </div>
+                            </h:form>
+
+
+                        </f:view>
+
+                        
+                        
+
+                    </div>
+                    
+                    <div class="container mx-auto mt-8 bg-white rounded-lg shadow-lg p-6">
+                        <h2 class="text-2xl font-semibold mb-4">Details</h2>
+                        
+                        <h:form rendered="#{not empty usersMB.u.id}" id="updateuser">
+                            
+                            <div class="mb-4 w-full col-span-2">
+                                <label for="firstname" class="block text-gray-700">Name:</label>
+                                <h:inputText id="firstname" value="#{usersMB.u.name}" class="block w-full rounded-md border-0 py-1.5 p-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:leading-6" required="true" requiredMessage="Name is required"/>
+                                <h:message for="firstname" class="text-red-500"/>
+
+                            </div>
+                            
+                            <div class="mb-4 w-full col-span-2">
+                                <label for="email" class="block text-gray-700">Email:</label>
+                                <h:inputText id="email" value="#{usersMB.u.email}" class="block w-full rounded-md border-0 py-1.5 p-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:leading-6" required="true" requiredMessage="Email is required"/>
+                                <h:message for="email" class="text-red-500"/>
+
+                            </div>
+
+                            <div class="mb-4 w-full col-span-2">
+                                <label for="phone" class="block text-gray-700">Phone No:</label>
+                                <h:inputText id="phone" value="#{usersMB.u.phoneNo}" class="block w-full rounded-md border-0 py-1.5 p-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:leading-6" required="true" requiredMessage="Phone No is required"/>
+                                <h:message for="phone" class="text-red-500"/>
+
+                            </div>
+                            
+                            <div class="mb-4 w-full col-span-2">
+                                <label for="dob" class="block text-gray-700">Date Of Birth (dd-MM-yyyy):</label>
+                                <h:inputText id="dob" value="#{usersMB.dobDate}" converterMessage="Invalid Date Format" class="block w-full rounded-md border-0 py-1.5 p-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:leading-6" required="true" requiredMessage="Date Of Birth is required">
+                                    <f:convertDateTime pattern="dd-MM-yyyy"/>
+                                </h:inputText>
+                                <h:message for="dob" class="text-red-500"/>
+
+                            </div>
+                           
+                            <div class="mb-4 w-full col-span-2">
+                                <label for="dob" class="block text-gray-700">VPA Address:</label>
+                                <h:inputText id="vpaAddress" value="#{usersMB.u.vpaAddress}" class="block w-full rounded-md border-0 py-1.5 p-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:leading-6" required="true" requiredMessage="VPA Address is required"/>
+                                <h:message for="vpaAddress" class="text-red-500"/>
+
+                            </div>
+<!--                            
+                            Password input 
+                            <div class="mb-4 w-full col-span-2" >
+                                <h:inputSecret id="password" value="#{usersMB.u.password}" class="peer block w-5/6 rounded border-0 bg-gray-200 px-5 py-4 leading-[2.15] ">
+                                       <f:validateRegex  pattern="((?=.*[a-z])(?=.*[0-9])(?=.*[@#$%]).{8,12})" />
+                                </h:inputSecret>
+                                <h:message for="password" class="text-red-500"/>
+
+                            </div>-->
+
+                            
+                            <!--Selecting Role-->
+                            <div class="relative mb-6" >
+
+                                <h:outputText value="Select Role:" />
+                                <h:selectOneRadio value="#{usersMB.roleId}" id="role">
+                                    <f:selectItems itemLabel="#{role.roleName}" value="#{rolesMB.allRolesOtherThanAdmin}" var="role" itemValue="#{role.id}" class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-black-600"/>
+                                </h:selectOneRadio>
+                            </div>
+                            <!--For printing error message of Managed Bean-->
+                            <h:messages globalOnly="true" class="text-red-500"/>
+
+
+                            <!-- Update button -->
+                            <div class="text-center lg:text-left">
+                                <h:commandButton
+                                    id="update"
+                                    value="Save Changes"
+                                    action="#{usersMB.update()}"
+                                    class="inline-block rounded bg-green-500 px-7 pb-2.5 pt-3 font-large leading-normal text-white hover:bg-green-700 "
+                                    >
+                                </h:commandButton>
+
+                            </div>
+                        </h:form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript">
+        $(document).ready(function () {
+            $(".users").dataTable({
+                    "fnRowCallback": function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
+                         var rowNumber = iDisplayIndexFull + 1;
+                        $('td:eq(0)', nRow).html('<p class="py-2 px-4 border-b block">' + rowNumber + '</p>');
+                    }
+                });
+        });
+        </script>
+    </h:body>
+</html>

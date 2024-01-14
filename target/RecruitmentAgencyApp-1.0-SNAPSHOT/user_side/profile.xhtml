@@ -1,0 +1,247 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>User - Profile</title>
+        <h:outputStylesheet name="css/output.css" />
+        <h:outputStylesheet name="js/datatables.min.css"/>
+        <h:outputScript name="js/jquery.min.js"/>
+        <h:outputScript name="js/datatables.min.js"/>
+    </h:head>
+    <h:body class="font-sans bg-gray-100" >
+        <div class="h-screen bg-gray-200">
+
+
+            <!-- Top Navbar -->
+
+
+            <div class="flex justify-between items-stretch bg-white border-b border-gray-500 h-14">
+
+
+                <!-- Logo in the Intersection -->
+                <div class="flex text-white text-2xl bg-gray-300 w-64 items-center px-4">
+                    <img src="../logo/logonobg.jpg" alt="Recruitment Agency" class="w-full h-14"></img>
+                </div>
+
+                <!-- Avatar and User Menu on the Right -->
+                <div class="flex items-center mr-4">
+                    <button type="button" onclick="return toggleDropdown();" class="flex text-sm bg-gray-800 rounded-full focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" id="user-menu-button-2" aria-expanded="false" data-dropdown-toggle="dropdown-2">
+                        <span class="sr-only">Open user menu</span>
+                        <img class="w-10 h-10 rounded-full" src="../logo/user.jpg" alt="user photo"/>
+                    </button>
+                </div>
+
+                <!--User Dropdown Menu--> 
+                <div class="z-50 my-4 text-base list-none bg-gray-100 divide-y divide-gray-100 rounded shadow-lg shadow-gray-500/50 dark:bg-gray-700 dark:divide-gray-600" id="dropdown-2" data-popper-placement="bottom" style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate(1490px, 40px);">
+                    <!--User Info--> 
+                    <div class="px-4 py-3" role="none">
+                        <h:outputText value="Username" class="text-sm text-gray-900 dark:text-white" role="none"/>
+                        <br></br>    
+                        <h:outputText value="#{sessionScope['user-email']}" class="text-sm font-medium text-gray-900 truncate dark:text-gray-300" role="none"/>
+                    </div>
+
+                    <!--User Menu Options--> 
+                    <ul class="py-1" role="none">
+                        <li>
+                            <h:link outcome="profile" value="Profile" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem"/>
+                        </li>
+                        <!--                        <li>
+                                                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">Settings</a>
+                                                </li>-->
+                        <li>
+                            <h:link outcome="earnings" value="Earnings" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem"/>
+                            <!--<a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">Earnings</a>-->
+                        </li>
+                        <li>
+                            <h:form>
+                                <h:commandButton action="#{loginMB.logout()}" value="Sign Out" class="block mx-2.5 px-4 py-2 bg-red-500 text-md text-white hover:bg-red-600 dark:text-gray-300 dark:hover:bg-red-600 dark:hover:text-white" role="menuitem"/>
+                            </h:form>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+
+
+            <!-- Sidebar -->
+            <div class="flex h-full overflow-hidden">
+
+                <!-- Sidebar Content -->
+                <div class="w-64 bg-gray-800 h-screen overflow-y-auto">
+                    <nav class="mt-4">
+                        <a href="dashboard.jsf" class="flex items-center px-6 py-2 text-gray-200 border-l-4 border-blue-500">
+                            <svg class="w-6 h-6 mr-4 text-white dark:text-white" aria-hidden="true" fill="none" viewBox="0 0 20 20">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8v10a1 1 0 0 0 1 1h4v-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v5h4a1 1 0 0 0 1-1V8M1 10l9-9 9 9"/>
+                            </svg>
+                            <span class="text-lg font-semibold">Dashboard</span>
+                        </a>
+                        <a href="candidates.jsf" class="flex items-center px-6 py-2 mt-2 text-gray-200 hover:border-blue-500">
+                            <svg class="w-6 h-6 text-white mr-4 dark:text-white" aria-hidden="true" fill="none" viewBox="0 0 20 18">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M14 3a3 3 0 1 1-1.614 5.53M15 12a4 4 0 0 1 4 4v1h-3.348M10 4.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0ZM5 11h3a4 4 0 0 1 4 4v2H1v-2a4 4 0 0 1 4-4Z"/>
+                            </svg>
+                            <span class="text-lg">Candidates</span>
+                        </a>
+                        <h:link outcome="rounds.jsf" class="flex items-center px-6 py-2 mt-2 text-gray-200 hover:border-blue-500">
+                            <svg class="w-6 h-6 mr-4 text-white dark:text-white" aria-hidden="true" fill="none" viewBox="0 0 20 16">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5h6M9 8h6m-6 3h6M4.996 5h.01m-.01 3h.01m-.01 3h.01M2 1h16a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1Z"/>
+                            </svg>
+                            <span class="text-lg ">Rounds</span>
+                        </h:link>
+                    </nav>
+                </div>
+
+                <!-- Main Content (Add your content here) -->
+                <div class="flex-1 flex flex-col bg-gray-200 overflow-y-auto">
+                    <!--Your content goes here--> 
+                    <div class="p-6 ">
+                        <!--Content for the selected tab--> 
+                        <h2 class="text-3xl font-semibold mb-4">Profile</h2>
+
+                        <div class="container mx-auto mt-8 bg-white rounded-lg shadow-lg p-6">
+
+                            <f:view>
+
+                                <h:form rendered="#{not empty usersMB.u.id}" id="edituser">
+                                    <!-- JSF Remote Command to trigger server-side action -->
+
+
+                                    <div class="mb-4 w-full col-span-2">
+                                        <label for="firstname" class="block text-gray-700">Name:</label>
+                                        <h:inputText id="firstname" value="#{usersMB.u.name}" class="block w-full rounded-md border-0 py-1.5 p-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:leading-6" required="true" requiredMessage="Name is required"/>
+                                        <h:message for="firstname" class="text-red-500"/>
+
+                                    </div>
+
+                                    <div class="mb-4 w-full col-span-2">
+                                        <label for="email" class="block text-gray-700">Email:</label>
+                                        <h:inputText id="email" value="#{usersMB.u.email}" class="block w-full rounded-md border-0 py-1.5 p-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:leading-6" required="true" requiredMessage="Email is required"/>
+                                        <h:message for="email" class="text-red-500"/>
+
+                                    </div>
+
+                                    <div class="mb-4 w-full col-span-2">
+                                        <label for="phone" class="block text-gray-700">Phone No:</label>
+                                        <h:inputText id="phone" value="#{usersMB.u.phoneNo}" class="block w-full rounded-md border-0 py-1.5 p-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:leading-6" required="true" requiredMessage="Phone No is required"/>
+                                        <h:message for="phone" class="text-red-500"/>
+
+                                    </div>
+
+                                    <div class="mb-4 w-full col-span-2">
+                                        <label for="dob" class="block text-gray-700">Date Of Birth (dd-MM-yyyy):</label>
+                                        <h:inputText id="dob" value="#{usersMB.dobDate}" class="block w-full rounded-md border-0 py-1.5 p-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:leading-6" required="true" requiredMessage="Date Of Birth is required">
+                                            <f:convertDateTime type="date" pattern="dd-MM-yyyy"/>
+                                        </h:inputText>
+                                        <h:message for="dob" class="text-red-500"/>
+
+                                    </div>
+
+                                    <div class="mb-4 w-full col-span-2">
+                                        <label for="dob" class="block text-gray-700">VPA Address:</label>
+                                        <h:inputText id="vpaAddress" value="#{usersMB.u.vpaAddress}" class="block w-full rounded-md border-0 py-1.5 p-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:leading-6" required="true" requiredMessage="VPA Address is required"/>
+                                        <h:message for="vpaAddress" class="text-red-500"/>
+
+                                    </div>
+                                    <!--                            
+                                                                Password input 
+                                                                <div class="mb-4 w-full col-span-2" >
+                                                                    <h:inputSecret id="password" value="#{usersMB.u.password}" class="peer block w-5/6 rounded border-0 bg-gray-200 px-5 py-4 leading-[2.15] ">
+                                                                           <f:validateRegex  pattern="((?=.*[a-z])(?=.*[0-9])(?=.*[@#$%]).{8,12})" />
+                                                                    </h:inputSecret>
+                                                                    <h:message for="password" class="text-red-500"/>
+                                    
+                                                                </div>-->
+
+
+
+                                    <!--For printing error message of Managed Bean-->
+                                    <h:messages globalOnly="true" class="text-red-500"/>
+
+
+                                    <!-- Update button -->
+                                    <div class="text-center lg:text-left">
+                                        <h:commandButton
+                                            id="update"
+                                            value="Save Changes"
+                                            action="#{usersMB.update()}"
+                                            class="inline-block rounded bg-green-500 px-7 pb-2.5 pt-3 text-sm font-medium leading-normal text-white hover:bg-green-700 "
+                                            >
+                                        </h:commandButton>
+
+                                    </div>
+                                </h:form>
+
+                            </f:view>
+
+
+                        </div>
+                    </div>
+                    <!-- Footer -->
+                    <footer class="bg-white mb-0 rounded-lg shadow sm:flex sm:items-center sm:justify-between sm:p-6 dark:bg-gray-800 antialiased mt-auto">
+                        <p class="mb-4 text-sm text-center text-gray-500 dark:text-gray-400 sm:mb-0">
+                            &copy; 2023 <a href="dashboard.jsf" class="hover:underline">Recruitment Agency</a>. All rights reserved.
+                        </p>
+                        <div class="flex justify-center items-center space-x-1">
+                            <a href="#" class="inline-flex justify-center p-1 text-gray-500 rounded-lg cursor-pointer dark:text-gray-400 dark:hover:text-white hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-600">
+                                <svg class="w-5 h-5 mr-2 text-gray-500 dark:text-white" aria-hidden="true" fill="none" viewBox="0 0 18 18">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m16.344 12.168-1.4-1.4a1.98 1.98 0 0 0-2.8 0l-.7.7a1.98 1.98 0 0 1-2.8 0l-2.1-2.1a1.98 1.98 0 0 1 0-2.8l.7-.7a1.981 1.981 0 0 0 0-2.8l-1.4-1.4a1.828 1.828 0 0 0-2.8 0C-.638 5.323 1.1 9.542 4.78 13.22c3.68 3.678 7.9 5.418 11.564 1.752a1.828 1.828 0 0 0 0-2.804Z"/>
+                                </svg>
+                                <p class="text-md">9809809809</p>
+                            </a>
+                        </div>
+                    </footer>
+                </div>
+
+            </div>
+
+
+
+
+        </div>
+
+        <script type="text/javascript">
+
+            $(document).ready(function () {
+
+                // Check if the action has already been executed
+//                var profileUserClicked = false;
+//
+//                // Function to handle the click event
+//                function handleClickEvent() {
+//                    if (!profileUserClicked) {
+//                        profileUserClicked = true;
+//
+//                        // Trigger the click event only once
+//                        $("[id='showData:profileuser']").click();
+//
+//                        console.log(document.getElementById("showData:profileuser"));
+//
+//                        $("#dropdown-2").hide();
+//                    }
+//                }
+//
+//                // Call the function to handle the click event
+//                handleClickEvent();
+
+                //$("[id='showData:profileuser']").click();
+                //console.log(document.getElementById("showData:profileuser"));
+
+                $("#dropdown-2").hide();
+
+
+            });
+//            function init(){
+//                $("[id='showData:profileuser']").click();
+//                console.log(document.getElementById("showData:profileuser"));
+//            }
+            function toggleDropdown() {
+                $("#dropdown-2").toggle();
+//                var dropdown = document.getElementById(dropdownId);
+//                dropdown.style.display = dropdown.style.display === 'none' ? 'block' : 'none';
+            }
+
+        </script>
+    </h:body>
+</html>

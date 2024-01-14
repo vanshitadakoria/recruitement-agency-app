@@ -1,0 +1,93 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+      >
+    <h:head>
+        <title>RecruitmentApp - Login</title>
+        <h:outputStylesheet name="css/output.css" />
+    </h:head>
+    <h:body>
+
+        <section class="h-screen">
+            <div class="h-full">
+                <!-- Left column container with background-->
+                <div
+                    class="g-6 flex h-full flex-wrap items-center justify-center lg:justify-between">
+                    <div
+                        class="shrink-1 mb-12 grow-0 basis-auto md:mb-0 md:w-9/12 md:shrink-0 lg:w-6/12 xl:w-6/12">
+                        <img
+                            src="https://tecdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
+                            class="w-full"
+                            alt="Sample image" />
+                    </div>
+
+                    <!-- Right column container -->
+                    <div class="mb-12 md:mb-0 md:w-8/12 lg:w-5/12 xl:w-5/12">
+
+                        <h:form>
+                            <h1 class="text-5xl pb-10 text-center w-5/6">Sign In</h1>
+
+                            <!-- Username input -->
+                            <div class="relative mb-6" >
+                                <h:inputText id="username" value="#{loginMB.email}" p:placeholder="Username" class="peer block w-5/6  rounded border-2 bg-gray-200 px-5 py-4 leading-[2.15]"/>
+                                <h:message for="firstname" class="text-red-500"/>
+
+                            </div>
+
+
+                            <!--Password input--> 
+                            <div class="relative mb-6" >
+                                <h:inputSecret id="password" value="#{loginMB.password}" p:placeholder="Password" class="peer block w-5/6 rounded border-0 bg-gray-200 px-5 py-4 leading-[2.15] "/>
+                                <h:message for="password" class="text-red-500"/>
+                                <h:messages globalOnly="true" class="text-red-500"/>
+                            </div>
+
+                            <h:outputText id="msg" style="color:red" value="#{loginMB.message}"/> 
+
+<!--                            <div class="mb-6 mr-2 flex items-center justify-end w-5/6">
+                                 Remember me checkbox 
+                                <div class="mb-[0.125rem] block min-h-[1.5rem] pl-[1.5rem]">
+
+                                    <h:selectBooleanCheckbox id="remember"/>
+
+                                    <h:outputLabel
+                                        class="inline-block pl-2"
+                                        for="remember">
+                                        Remember me
+                                    </h:outputLabel>
+                                </div>
+                            </div>-->
+
+                            <!-- Login button -->
+                            <div class="text-center lg:text-left">
+                                <h:commandButton
+                                    id="login"
+                                    value="Sign In"
+                                    action="#{loginMB.login()}"
+                                    class="inline-block rounded bg-blue-500 px-7 pb-2.5 pt-3 text-sm font-medium uppercase leading-normal text-white hover:bg-blue-700 "
+                                    />
+
+                                <!-- Register link -->
+                                <p class="mb-0 mt-2 pt-1 text-sm font-semibold">
+                                    Don't have an account?
+    
+                                    <h:link
+                                        class="font-medium text-red-500 hover:underline"
+                                        outcome="sign_up.jsf?faces-redirect=true"
+                                        ><h:outputText value="Sign Up"></h:outputText>
+                                    </h:link>
+                                </p>
+                            </div>
+                            <!--<h:outputText id="msg" style="color:red" value="#{loginMB.message}"/>--> 
+
+                        </h:form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+    </h:body>
+</html>
